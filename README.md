@@ -1,6 +1,6 @@
 # "Learn to Google" website
 
-[Russian](https://sadykhzadeh.github.io/learn-to-google/) | [English](https://sadykhzadeh.github.io/learn-to-google/en/) | [Azerbaijani](https://sadykhzadeh.github.io/learn-to-google/az/) | [Ukranian](https://sadykhzadeh.github.io/learn-to-google/ua/)
+[Russian](https://sadykhzadeh.github.io/learn-to-google/) | [English](https://sadykhzadeh.github.io/learn-to-google/en/) | [Azerbaijani](https://sadykhzadeh.github.io/learn-to-google/az/) | [Ukrainian](https://sadykhzadeh.github.io/learn-to-google/ua/)
 
 The main purpose of the site is to explain the advantages of googling questions in a polite way to people who are too lazy to Google for unknown reasons.
 
