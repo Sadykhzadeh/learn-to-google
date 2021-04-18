@@ -8,7 +8,7 @@ The main purpose of the site is to explain the advantages of googling questions 
 
 ## Contributors
 1. [@byrvr](https://t.me/byrvr) for help with the website and translation into the Azerbaijani language.
-2. [@devule](https://t.me/devule)  for help with the website and translation into the Ukranian language.
+2. [@devule](https://t.me/devule)  for help with the website and translation into the Ukrainian language.
 
 ### Author
 by [Azer Sadykhzadeh](https://sadykhzadeh.github.io), 2020.
