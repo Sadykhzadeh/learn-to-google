@@ -4,7 +4,7 @@
 
 The main purpose of the site is to explain the advantages of googling questions in a polite way to people who are too lazy to Google for unknown reasons.
 
-*The code has NOT been polished and is provided "as is". There are a lot of code that are redundant and there are tons of improvements that can be made.*
+*The code has NOT been polished and is provided "as is". There's a lot of code that is redundant and there are tons of improvements that can be made.*
 
 ## Contributors
 1. [@byrvr](https://t.me/byrvr) for help with the website and translation into the Azerbaijani language.
