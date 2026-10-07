@@ -10,6 +10,8 @@ h1 {
 	margin: 2rem 0;
 	font-size: 2rem;
 	line-height: 1.125em;
+	/* Was a <center> inside the <h1>, which takes phrasing content only. */
+	text-align: center;
 }
 article {
 	width: 50rem;
@@ -132,4 +134,9 @@ footer a {
 	margin-bottom: 0.75rem;
 	text-align: left;
 	}
+}
+
+/* Replaces <center>, which has been obsolete since HTML 4. */
+.center {
+	text-align: center;
 }
