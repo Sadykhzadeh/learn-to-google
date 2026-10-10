@@ -23,4 +23,7 @@ export default {
 	imageAlt: "The son came to his father and asked: 'Why should I Google?'",
 	footer: 'Inspiration - stupid questions from different chats that need to be googled... Link to',
 	github: 'Github',
+	ui: {
+		languages: 'Language',
+	},
 };

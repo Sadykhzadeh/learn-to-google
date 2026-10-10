@@ -30,7 +30,6 @@ const octicon = 'M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.5
 
 export default function page(t, languages) {
 	const at = (target) => rel(t.dir, target);
-	const others = languages.filter((l) => l !== t);
 	// The PNG stays for share previews and the full-size link; browsers that
 	// take WebP get a copy a tenth of the size, 800px wide unless the screen
 	// needs more.
@@ -55,7 +54,14 @@ ${languages.map((l) => `\t\t<link rel="alternate" hreflang="${l.lang}" href="${s
 		<link rel="alternate" hreflang="x-default" href="${site}">
 	</head>
 	<body>
-		<article>
+		<header>
+			<nav aria-label="${esc(t.ui.languages)}">
+				<ul class="languages">
+${languages.map((l) => `\t\t\t\t\t<li><a href="${at(l.dir)}" hreflang="${l.lang}" lang="${l.lang}"${l === t ? ' aria-current="page"' : ''}>${esc(l.name)}</a></li>`).join('\n')}
+				</ul>
+			</nav>
+		</header>
+		<main>
 			<h1>${esc(t.title)}</h1>
 			<p>${esc(t.intro)}</p>
 ${t.questions.map((q) => `\t\t\t<div class="dialog-line -you">
@@ -70,7 +76,7 @@ ${indent(t.body, 3)}
 					<img src="${at(t.image)}" width="${width}" height="${height}" alt="${esc(t.imageAlt)}" loading="lazy" decoding="async">
 				</picture>
 			</a>
-		</article>
+		</main>
 		<footer>
 			<div class="row">
 				${t.footer}
@@ -79,12 +85,6 @@ ${indent(t.body, 3)}
 						<path fill-rule="evenodd" d="${octicon}"></path>
 					</svg>
 				</a>
-			</div>
-			<br>
-			<div class="row">
-				<div class="center">
-${others.map((l) => `\t\t\t\t\t<a href="${at(l.dir)}">${esc(l.name)}</a>`).join('\n')}
-				</div>
 			</div>
 		</footer>
 	</body>

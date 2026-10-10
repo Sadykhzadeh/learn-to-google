@@ -13,7 +13,7 @@ h1 {
 	/* Was a <center> inside the <h1>, which takes phrasing content only. */
 	text-align: center;
 }
-article {
+main {
 	max-width: 50rem;
 	margin: 0 auto 1rem auto;
 	padding: 0 0.75rem;
@@ -51,7 +51,7 @@ footer a {
 	font-size: 1.5rem;
 	text-align: center;
 	}
-	article {
+	main {
 	font-size: 1.125rem;
 	}
 }
@@ -133,7 +133,32 @@ footer a {
 	}
 }
 
-/* Replaces <center>, which has been obsolete since HTML 4. */
-.center {
-	text-align: center;
+header {
+	max-width: 50rem;
+	margin: 0 auto;
+	padding: 1rem 0.75rem 0;
+}
+.languages {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0 1rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 0.875rem;
+}
+.languages a {
+	display: inline-block;
+	/* Keeps each name a comfortable tap target on a phone. */
+	padding: 0.25rem 0;
+	color: #555;
+	text-decoration: none;
+}
+.languages a:hover {
+	text-decoration: underline;
+}
+.languages a[aria-current] {
+	color: inherit;
+	font-weight: 700;
 }

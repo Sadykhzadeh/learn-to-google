@@ -23,4 +23,7 @@ export default {
 	imageAlt: "Oğul atasına gəlib soruşdu: 'niyə Google-dan istifadə edim ki?'",
 	footer: 'Məqalənin ilhamı - cürbəcür söhbətlərdə mənasız suallar, hansı ki Google-da tapıla bilər...',
 	github: 'Github linki',
+	ui: {
+		languages: 'Dil',
+	},
 };
