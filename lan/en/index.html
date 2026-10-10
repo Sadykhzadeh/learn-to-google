@@ -45,7 +45,10 @@
 			<p>Not really. If you have a question, first Google it, then if you can't find the answer, you can <s>search it in <a target="_blank" rel="noopener noreferrer" href="https://yandex.com">Yandex</a></s> ask your question in forum.</p>
 			<p>The essence in one picture:</p>
 			<a href="img/bad-good.png">
-				<img src="img/bad-good.png" alt="The son came to his father and asked: 'Why should I Google?'">
+				<picture>
+					<source type="image/webp" srcset="img/bad-good-800.webp 800w, img/bad-good.webp 1426w" sizes="(max-width: 768px) calc(100vw - 1.5rem), 800px">
+					<img src="img/bad-good.png" width="1426" height="870" alt="The son came to his father and asked: 'Why should I Google?'" loading="lazy" decoding="async">
+				</picture>
 			</a>
 		</article>
 		<footer>

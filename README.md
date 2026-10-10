@@ -22,6 +22,8 @@ node build.mjs
 
 To add a language, copy one of the files in `i18n/`, translate it, give it its own `lang` and `dir`, add it to `i18n/index.mjs` and run the build.
 
+Each picture is a PNG (`bad-good.png`, kept for share previews and the full-size link) with two WebP copies next to it, which is what browsers actually download: `bad-good.webp` at full size and `bad-good-800.webp` 800px wide, both at quality 80. If you replace a PNG, make the WebP copies again, for example with `cwebp -q 80 -m 6 bad-good.png -o bad-good.webp` and the same with `-resize 800 0` for the smaller one.
+
 ## Contributors
 1. [@byrvr](https://t.me/byrvr) for help with the website and translation into the Azerbaijani language.
 2. [@devule](https://t.me/devule)  for help with the website and translation into the Ukrainian language.
