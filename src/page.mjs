@@ -26,7 +26,32 @@ export function rel(dir, target) {
 const indent = (html, depth) =>
 	html.trim().split('\n').map((line) => '\t'.repeat(depth) + line).join('\n');
 
-const octicon = 'M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z';
+// Runs in <head>, before anything is drawn, so a reader who chose the dark
+// theme never sees a white flash. Without a stored choice the theme follows
+// the system, and keeps following it if the system switches.
+const themeScript = `(function () {
+	var root = document.documentElement, key = 'learn-to-google:theme', dark = matchMedia('(prefers-color-scheme: dark)'), chosen;
+	try { chosen = localStorage.getItem(key); } catch (e) {}
+	function apply() {
+		var theme = chosen || (dark.matches ? 'dark' : 'light'), button = document.querySelector('.theme');
+		root.setAttribute('data-theme', theme);
+		if (button) button.setAttribute('aria-pressed', theme === 'dark');
+	}
+	apply();
+	root.classList.add('js');
+	dark.addEventListener('change', apply);
+	document.addEventListener('DOMContentLoaded', apply);
+	document.addEventListener('click', function (event) {
+		if (!event.target.closest('.theme')) return;
+		var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+		// Picking what the system already wants means following the system again.
+		chosen = next === (dark.matches ? 'dark' : 'light') ? null : next;
+		try { chosen ? localStorage.setItem(key, chosen) : localStorage.removeItem(key); } catch (e) {}
+		apply();
+	});
+})();`;
+
+const octicon ='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z';
 
 export default function page(t, languages) {
 	const at = (target) => rel(t.dir, target);
@@ -42,6 +67,12 @@ export default function page(t, languages) {
 		<meta charset="utf-8">
 		<title>${esc(t.title)}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="color-scheme" content="light dark">
+		<meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
+		<script>
+${indent(themeScript, 3)}
+		</script>
 		<link rel="stylesheet" href="${at('css/main.css')}">
 		<link rel="icon" href="${at('img/google_icon.ico')}">
 		<meta property="og:type" content="website">
@@ -60,6 +91,7 @@ ${languages.map((l) => `\t\t<link rel="alternate" hreflang="${l.lang}" href="${s
 ${languages.map((l) => `\t\t\t\t\t<li><a href="${at(l.dir)}" hreflang="${l.lang}" lang="${l.lang}"${l === t ? ' aria-current="page"' : ''}>${esc(l.name)}</a></li>`).join('\n')}
 				</ul>
 			</nav>
+			<button class="theme" type="button" aria-pressed="false">${esc(t.ui.darkTheme)}</button>
 		</header>
 		<main>
 			<h1>${esc(t.title)}</h1>

@@ -26,5 +26,6 @@ export default {
 	github: 'Github linki',
 	ui: {
 		languages: 'Dil',
+		darkTheme: 'Tünd tema',
 	},
 };

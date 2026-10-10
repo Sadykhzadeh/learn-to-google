@@ -1,10 +1,45 @@
+/*
+ * Colours. Dark follows the system unless the reader picked a theme with the
+ * header button, which sets data-theme on <html> (see the script in <head>).
+ */
+:root {
+	color-scheme: light;
+	--bg: #fff;
+	--ink: #333;
+	--muted: #555;
+	--bubble: #bfe9f9;
+	--picture: none;
+	--footer-bg: #334;
+	--footer-ink: #ccc;
+	--footer-link: #aaa;
+}
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+	color-scheme: dark;
+	--bg: #1c1c1e;
+	--ink: #e2e2e2;
+	--muted: #a6a6a6;
+	--bubble: #1e4250;
+	--picture: brightness(0.9);
+	}
+}
+:root[data-theme="dark"] {
+	color-scheme: dark;
+	--bg: #1c1c1e;
+	--ink: #e2e2e2;
+	--muted: #a6a6a6;
+	--bubble: #1e4250;
+	--picture: brightness(0.9);
+}
+
 html {
 	font-size: 16px;
-	color: #333;
+	color: var(--ink);
 	font-family: sans-serif;
 }
 body {
 	margin: 0;
+	background: var(--bg);
 }
 h1 {
 	margin: 2rem 0;
@@ -31,9 +66,13 @@ img {
 	height: auto;
 	width: auto\9;
 }
+main img {
+	/* The screenshot is white; take the edge off it on a dark page. */
+	filter: var(--picture);
+}
 
 footer {
-	background: #334;
+	background: var(--footer-bg);
 	padding: 1rem 0;
 	font-size: 0.875rem;
 }
@@ -41,10 +80,10 @@ footer .row {
 	max-width: 50rem;
 	margin: 0 auto;
 	padding: 0 0.75rem;
-	color: #ccc;
+	color: var(--footer-ink);
 }
 footer a {
-	color: #aaa;
+	color: var(--footer-link);
 }
 @media (max-width: 768px) {
 	h1 {
@@ -59,7 +98,7 @@ footer a {
 	height: 1.25rem;
 	width: 1.25rem;
 	padding: 0 0.25rem 0 0.5rem;
-	fill: #aaa;
+	fill: var(--footer-link);
 	vertical-align: bottom;
 }
 
@@ -100,10 +139,10 @@ footer a {
 	border-right: 0.25rem solid;
 }
 .dialog-line.-you .content {
-	background: #bfe9f9;
+	background: var(--bubble);
 }
 .dialog-line.-you .content::before {
-	border-right-color: #bfe9f9;
+	border-right-color: var(--bubble);
 }
 
 @media (max-width: 414px) {
@@ -137,22 +176,27 @@ header {
 	max-width: 50rem;
 	margin: 0 auto;
 	padding: 1rem 0.75rem 0;
+	text-align: center;
+	/* On a phone the row breaks into two even lines, not five names and a straggler. */
+	text-wrap: balance;
+	font-size: 0.875rem;
+}
+header nav,
+.languages,
+.languages li {
+	display: inline;
 }
 .languages {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 0 1rem;
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	font-size: 0.875rem;
 }
 .languages a {
 	display: inline-block;
 	/* Keeps each name a comfortable tap target on a phone. */
 	padding: 0.25rem 0;
-	color: #555;
+	margin: 0 0.4rem;
+	color: var(--muted);
 	text-decoration: none;
 }
 .languages a:hover {
@@ -160,5 +204,27 @@ header {
 }
 .languages a[aria-current] {
 	color: inherit;
+	font-weight: 700;
+}
+
+/* Needs the script, so it only shows once the script has run. */
+.theme {
+	display: none;
+	padding: 0.25rem 0;
+	margin: 0 0.4rem 0 1.25rem;
+	border: 0;
+	background: none;
+	color: var(--muted);
+	font: inherit;
+	cursor: pointer;
+}
+.js .theme {
+	display: inline-block;
+}
+.theme:hover {
+	text-decoration: underline;
+}
+[data-theme="dark"] .theme {
+	color: var(--ink);
 	font-weight: 700;
 }
