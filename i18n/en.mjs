@@ -30,5 +30,16 @@ export default {
 		// Shown on the other translations to readers whose browser prefers this language.
 		suggest: 'Read this page in English',
 		close: 'Close',
+		// Under the example questions when the page was opened from a link with ?q=.
+		findAnswer: 'Find the answer on Google',
+		// The form that makes such links.
+		shareTitle: 'Send this page to whoever asked',
+		shareQuestion: 'The question you were asked (optional)',
+		shareHint: 'It will appear on the page, with a button that searches for the answer.',
+		shareLanguage: 'Page language',
+		shareLink: 'Link',
+		copy: 'Copy',
+		copied: 'Link copied.',
+		copyFailed: "Couldn't copy. Select the link and copy it yourself.",
 	},
 };

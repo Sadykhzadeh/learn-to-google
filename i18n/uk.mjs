@@ -30,5 +30,16 @@ export default {
 		// Shown on the other translations to readers whose browser prefers this language.
 		suggest: 'Читати цю сторінку українською',
 		close: 'Закрити',
+		// Under the example questions when the page was opened from a link with ?q=.
+		findAnswer: 'Знайти відповідь у Google',
+		// The form that makes such links.
+		shareTitle: 'Надішліть цю сторінку тому, хто запитав',
+		shareQuestion: 'Питання, яке вам поставили (необов’язково)',
+		shareHint: 'Воно з’явиться на сторінці разом із кнопкою, яка знайде відповідь.',
+		shareLanguage: 'Мова сторінки',
+		shareLink: 'Посилання',
+		copy: 'Скопіювати',
+		copied: 'Посилання скопійовано.',
+		copyFailed: 'Не вдалося скопіювати. Виділіть посилання і скопіюйте вручну.',
 	},
 };

@@ -30,5 +30,16 @@ export default {
 		// Shown on the other translations to readers whose browser prefers this language.
 		suggest: 'Читать эту страницу на русском',
 		close: 'Закрыть',
+		// Under the example questions when the page was opened from a link with ?q=.
+		findAnswer: 'Найти ответ в Google',
+		// The form that makes such links.
+		shareTitle: 'Отправьте эту страницу тому, кто спросил',
+		shareQuestion: 'Вопрос, который вам задали (необязательно)',
+		shareHint: 'Он появится на странице вместе с кнопкой, которая найдёт ответ.',
+		shareLanguage: 'Язык страницы',
+		shareLink: 'Ссылка',
+		copy: 'Скопировать',
+		copied: 'Ссылка скопирована.',
+		copyFailed: 'Не получилось скопировать. Выделите ссылку и скопируйте вручную.',
 	},
 };

@@ -6,15 +6,16 @@ The main purpose of the site is to explain the advantages of googling questions 
 
 ## How it behaves
 
+- The form at the bottom of the page makes a link for whoever asked: pick the language, optionally paste their question, and copy (Enter copies too). The question travels as `?q=`, for example [`/lan/en/?q=What+is+polymorphism%3F`](https://azer.is-a.dev/learn-to-google/lan/en/?q=What+is+polymorphism%3F), and the page shows it first among the example questions, with a button that searches Google for it.
 - Each translation has its own URL, and a link always opens in the language it was shared in. If none of the reader's browser languages is the page's but one of them is another translation, a bar at the top offers that one; it stays away once they close it or pick a language.
 - The theme follows the system's light or dark setting; the button in the header overrides it, and the choice is remembered.
-- Everything works without JavaScript except those two, which simply do not appear.
+- Everything works without JavaScript except the form, the question, the language offer and the theme button, which simply do not appear.
 
 ## Editing
 
 Every translation is rendered from one template, so a change to the page is made once:
 
-- `src/page.mjs` is the page.
+- `src/page.mjs` is the page; `src/share.js` is the script behind the form, inlined into it.
 - `i18n/<lang>.mjs` holds the text of one translation; `i18n/index.mjs` lists them.
 - `css/main.css` is the stylesheet.
 

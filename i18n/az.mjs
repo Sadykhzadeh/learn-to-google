@@ -30,5 +30,16 @@ export default {
 		// Shown on the other translations to readers whose browser prefers this language.
 		suggest: 'Bu səhifəni Azərbaycan dilində oxuyun',
 		close: 'Bağla',
+		// Under the example questions when the page was opened from a link with ?q=.
+		findAnswer: 'Cavabı Google-da axtarın',
+		// The form that makes such links.
+		shareTitle: 'Bu səhifəni sual verənə göndərin',
+		shareQuestion: 'Sizə verilən sual (istəyə bağlı)',
+		shareHint: 'Sual səhifədə görünəcək, yanında da cavabı axtaran düymə olacaq.',
+		shareLanguage: 'Səhifənin dili',
+		shareLink: 'Keçid',
+		copy: 'Kopyala',
+		copied: 'Keçid kopyalandı.',
+		copyFailed: 'Kopyalamaq alınmadı. Keçidi seçin və özünüz kopyalayın.',
 	},
 };
