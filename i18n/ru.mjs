@@ -41,5 +41,9 @@ export default {
 		copy: 'Скопировать',
 		copied: 'Ссылка скопирована.',
 		copyFailed: 'Не получилось скопировать. Выделите ссылку и скопируйте вручную.',
+		// 404.html, which shows all five languages.
+		notFound: 'Страница не найдена',
+		notFoundText: 'Такой страницы нет, и тут даже Google не поможет.',
+		notFoundHome: 'На главную',
 	},
 };

@@ -1,6 +1,6 @@
-// Renders every translation of the page from src/page.mjs and i18n/.
+// Renders every translation of the page, and the 404 page, from src/ and i18n/.
 //
-//   node build.mjs           write index.html and lan/*/index.html
+//   node build.mjs           write index.html, lan/*/index.html and 404.html
 //   node build.mjs --check   change nothing; fail if a generated file is stale
 //                            or links to a local file that does not exist
 //
@@ -10,11 +10,15 @@ import { dirname, join, posix } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import languages from './i18n/index.mjs';
 import page from './src/page.mjs';
+import notFound from './src/404.mjs';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const check = process.argv.includes('--check');
 
-const outputs = languages.map((t) => ({ file: t.dir + 'index.html', html: page(t, languages) }));
+const outputs = [
+	...languages.map((t) => ({ file: t.dir + 'index.html', html: page(t, languages) })),
+	{ file: '404.html', html: notFound(languages) },
+];
 
 // Every local file a page refers to, as a path from the site root.
 function localRefs(file, html) {

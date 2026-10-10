@@ -41,5 +41,9 @@ export default {
 		copy: 'Kopyala',
 		copied: 'Keçid kopyalandı.',
 		copyFailed: 'Kopyalamaq alınmadı. Keçidi seçin və özünüz kopyalayın.',
+		// 404.html, which shows all five languages.
+		notFound: 'Səhifə tapılmadı',
+		notFoundText: 'Belə səhifə yoxdur, burada hətta Google da kömək etməz.',
+		notFoundHome: 'Ana səhifəyə',
 	},
 };
