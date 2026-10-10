@@ -14,8 +14,9 @@ h1 {
 	text-align: center;
 }
 article {
-	width: 50rem;
+	max-width: 50rem;
 	margin: 0 auto 1rem auto;
+	padding: 0 0.75rem;
 	font-size: 1.25rem;
 	line-height: 1.5em;
 }
@@ -37,8 +38,9 @@ footer {
 	font-size: 0.875rem;
 }
 footer .row {
-	width: 50rem;
+	max-width: 50rem;
 	margin: 0 auto;
+	padding: 0 0.75rem;
 	color: #ccc;
 }
 footer a {
@@ -51,11 +53,6 @@ footer a {
 	}
 	article {
 	font-size: 1.125rem;
-	}
-	article, footer .row {
-	width: 100%;
-	box-sizing: border-box;
-	padding: 0 0.75rem;
 	}
 }
 #octicon-icon {
