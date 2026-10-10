@@ -27,5 +27,8 @@ export default {
 	ui: {
 		languages: 'Язык',
 		darkTheme: 'Тёмная тема',
+		// Shown on the other translations to readers whose browser prefers this language.
+		suggest: 'Читать эту страницу на русском',
+		close: 'Закрыть',
 	},
 };

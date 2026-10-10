@@ -28,5 +28,8 @@ export default {
 	ui: {
 		languages: 'Til',
 		darkTheme: 'Tungi mavzu',
+		// Shown on the other translations to readers whose browser prefers this language.
+		suggest: "Bu sahifani o'zbek tilida o'qing",
+		close: 'Yopish',
 	},
 };

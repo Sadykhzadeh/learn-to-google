@@ -27,5 +27,8 @@ export default {
 	ui: {
 		languages: 'Dil',
 		darkTheme: 'Tünd tema',
+		// Shown on the other translations to readers whose browser prefers this language.
+		suggest: 'Bu səhifəni Azərbaycan dilində oxuyun',
+		close: 'Bağla',
 	},
 };

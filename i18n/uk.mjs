@@ -27,5 +27,8 @@ export default {
 	ui: {
 		languages: 'Мова',
 		darkTheme: 'Темна тема',
+		// Shown on the other translations to readers whose browser prefers this language.
+		suggest: 'Читати цю сторінку українською',
+		close: 'Закрити',
 	},
 };
