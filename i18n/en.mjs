@@ -20,7 +20,8 @@ export default {
 `,
 	pictureIntro: 'The essence in one picture:',
 	image: 'lan/en/img/bad-good.png',
-	imageAlt: "The son came to his father and asked: 'Why should I Google?'",
+	imageAlt: 'Bad: asking “What is polymorphism?” in a chat. Good: typing the same question into Google, and the answer is right there on the results page.',
+	imageTitle: "The son came to his father and asked: 'Why should I Google?'",
 	footer: 'Inspiration - stupid questions from different chats that need to be googled... Link to',
 	github: 'Github',
 	ui: {

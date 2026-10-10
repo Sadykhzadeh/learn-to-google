@@ -20,7 +20,8 @@ export default {
 `,
 	pictureIntro: 'İşin mahiyyəti bir şəkildə:',
 	image: 'lan/az/img/bad-good.png',
-	imageAlt: "Oğul atasına gəlib soruşdu: 'niyə Google-dan istifadə edim ki?'",
+	imageAlt: 'Pis: söhbətdə «Polimorfizm nədir?» deyə soruşmaq. Yaxşı: eyni sualı Google-da axtarmaq, cavab elə nəticələr səhifəsindədir.',
+	imageTitle: "Oğul atasına gəlib soruşdu: 'niyə Google-dan istifadə edim ki?'",
 	footer: 'Məqalənin ilhamı - cürbəcür söhbətlərdə mənasız suallar, hansı ki Google-da tapıla bilər...',
 	github: 'Github linki',
 	ui: {
