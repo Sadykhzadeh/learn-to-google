@@ -21,7 +21,8 @@ export default {
 	pictureIntro: 'Ushbu rasmdagi misol:',
 	// No Uzbek screenshot exists; the page shows the Russian one.
 	image: 'img/bad-good.png',
-	imageAlt: "Kichkina o'g'il otasining oldiga kelib, so'radi: 'Nega buni googledan qidirishim kerak?'",
+	imageAlt: "Yomon: chatda «Polimorfizm nima?» deb so'rash. Yaxshi: xuddi shu savolni Googlega yozish, javob darhol natijalar sahifasida chiqadi.",
+	imageTitle: "Kichkina o'g'il otasining oldiga kelib, so'radi: 'Nega buni googledan qidirishim kerak?'",
 	footer: 'Ilhom — turli xil chatlardagi ahmoqona savollarni, googledan qidirish kerak... Link',
 	github: 'Githab da',
 	ui: {

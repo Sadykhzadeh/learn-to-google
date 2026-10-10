@@ -70,7 +70,7 @@ ${t.questions.map((q) => `\t\t\t<div class="dialog-line -you">
 			<p>${t.verdict}</p>
 ${indent(t.body, 3)}
 			<p>${esc(t.pictureIntro)}</p>
-			<a href="${at(t.image)}">
+			<a href="${at(t.image)}" title="${esc(t.imageTitle)}">
 				<picture>
 					<source type="image/webp" srcset="${webp('-800')} 800w, ${webp('')} ${width}w" sizes="(max-width: 768px) calc(100vw - 1.5rem), 800px">
 					<img src="${at(t.image)}" width="${width}" height="${height}" alt="${esc(t.imageAlt)}" loading="lazy" decoding="async">
