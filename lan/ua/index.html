@@ -10,8 +10,11 @@
 		<meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
 		<script>
 			(function () {
-				var root = document.documentElement, key = 'learn-to-google:theme', dark = matchMedia('(prefers-color-scheme: dark)'), chosen;
-				try { chosen = localStorage.getItem(key); } catch (e) {}
+				var root = document.documentElement, store = {}, dark = matchMedia('(prefers-color-scheme: dark)');
+				try { store = localStorage; } catch (e) {}
+				function get(key) { try { return store.getItem('learn-to-google:' + key); } catch (e) {} }
+				function save(key, value) { try { value ? store.setItem('learn-to-google:' + key, value) : store.removeItem('learn-to-google:' + key); } catch (e) {} }
+				var chosen = get('theme');
 				function apply() {
 					var theme = chosen || (dark.matches ? 'dark' : 'light'), button = document.querySelector('.theme');
 					root.setAttribute('data-theme', theme);
@@ -21,13 +24,29 @@
 				root.classList.add('js');
 				dark.addEventListener('change', apply);
 				document.addEventListener('DOMContentLoaded', apply);
+			
+				var others = ["ru","az","en","uz"];
+				var wanted = (navigator.languages || [navigator.language]).map(function (l) { return String(l).toLowerCase().split('-')[0]; });
+				var offer = wanted.indexOf("uk") < 0 && wanted.filter(function (l) { return others.indexOf(l) >= 0; })[0];
+				if (offer && !get('language')) {
+					root.setAttribute('data-suggest', offer);
+					var style = document.createElement('style');
+					style.textContent = '[data-suggest] .suggest [lang="' + offer + '"] { display: flex; }';
+					document.head.appendChild(style);
+				}
+			
 				document.addEventListener('click', function (event) {
-					if (!event.target.closest('.theme')) return;
-					var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-					// Picking what the system already wants means following the system again.
-					chosen = next === (dark.matches ? 'dark' : 'light') ? null : next;
-					try { chosen ? localStorage.setItem(key, chosen) : localStorage.removeItem(key); } catch (e) {}
-					apply();
+					var target = event.target;
+					if (target.closest('.theme')) {
+						var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+						// Picking what the system already wants means following the system again.
+						chosen = next === (dark.matches ? 'dark' : 'light') ? null : next;
+						save('theme', chosen);
+						apply();
+					} else if (target.closest('.suggest, .languages')) {
+						save('language', 'chosen');
+						if (target.closest('.suggest button')) root.removeAttribute('data-suggest');
+					}
 				});
 			})();
 		</script>
@@ -47,6 +66,24 @@
 		<link rel="alternate" hreflang="x-default" href="https://azer.is-a.dev/learn-to-google/">
 	</head>
 	<body>
+		<div class="suggest">
+			<p lang="ru">
+				<a href="../../" hreflang="ru">Читать эту страницу на русском</a>
+				<button type="button" aria-label="Закрыть"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+			</p>
+			<p lang="az">
+				<a href="../az/" hreflang="az">Bu səhifəni Azərbaycan dilində oxuyun</a>
+				<button type="button" aria-label="Bağla"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+			</p>
+			<p lang="en">
+				<a href="../en/" hreflang="en">Read this page in English</a>
+				<button type="button" aria-label="Close"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+			</p>
+			<p lang="uz">
+				<a href="../uz/" hreflang="uz">Bu sahifani o'zbek tilida o'qing</a>
+				<button type="button" aria-label="Yopish"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+			</p>
+		</div>
 		<header>
 			<nav aria-label="Мова">
 				<ul class="languages">

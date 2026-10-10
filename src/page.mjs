@@ -26,12 +26,22 @@ export function rel(dir, target) {
 const indent = (html, depth) =>
 	html.trim().split('\n').map((line) => '\t'.repeat(depth) + line).join('\n');
 
-// Runs in <head>, before anything is drawn, so a reader who chose the dark
-// theme never sees a white flash. Without a stored choice the theme follows
-// the system, and keeps following it if the system switches.
-const themeScript = `(function () {
-	var root = document.documentElement, key = 'learn-to-google:theme', dark = matchMedia('(prefers-color-scheme: dark)'), chosen;
-	try { chosen = localStorage.getItem(key); } catch (e) {}
+// Runs in <head>, before anything is drawn, so nothing on the page moves or
+// flashes once it appears.
+//
+// Theme: without a stored choice it follows the system, and keeps following
+// it if the system switches.
+//
+// Language: if none of the reader's languages is this page's but one of them
+// is another translation, the bar offering it is shown. Never once they have
+// closed it or picked a language themselves, and never as a redirect: a link
+// shared in a particular language has to open in that language.
+const headScript = (t, languages) => `(function () {
+	var root = document.documentElement, store = {}, dark = matchMedia('(prefers-color-scheme: dark)');
+	try { store = localStorage; } catch (e) {}
+	function get(key) { try { return store.getItem('learn-to-google:' + key); } catch (e) {} }
+	function save(key, value) { try { value ? store.setItem('learn-to-google:' + key, value) : store.removeItem('learn-to-google:' + key); } catch (e) {} }
+	var chosen = get('theme');
 	function apply() {
 		var theme = chosen || (dark.matches ? 'dark' : 'light'), button = document.querySelector('.theme');
 		root.setAttribute('data-theme', theme);
@@ -41,17 +51,33 @@ const themeScript = `(function () {
 	root.classList.add('js');
 	dark.addEventListener('change', apply);
 	document.addEventListener('DOMContentLoaded', apply);
+
+	var others = ${JSON.stringify(languages.filter((l) => l !== t).map((l) => l.lang))};
+	var wanted = (navigator.languages || [navigator.language]).map(function (l) { return String(l).toLowerCase().split('-')[0]; });
+	var offer = wanted.indexOf(${JSON.stringify(t.lang)}) < 0 && wanted.filter(function (l) { return others.indexOf(l) >= 0; })[0];
+	if (offer && !get('language')) {
+		root.setAttribute('data-suggest', offer);
+		var style = document.createElement('style');
+		style.textContent = '[data-suggest] .suggest [lang="' + offer + '"] { display: flex; }';
+		document.head.appendChild(style);
+	}
+
 	document.addEventListener('click', function (event) {
-		if (!event.target.closest('.theme')) return;
-		var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-		// Picking what the system already wants means following the system again.
-		chosen = next === (dark.matches ? 'dark' : 'light') ? null : next;
-		try { chosen ? localStorage.setItem(key, chosen) : localStorage.removeItem(key); } catch (e) {}
-		apply();
+		var target = event.target;
+		if (target.closest('.theme')) {
+			var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+			// Picking what the system already wants means following the system again.
+			chosen = next === (dark.matches ? 'dark' : 'light') ? null : next;
+			save('theme', chosen);
+			apply();
+		} else if (target.closest('.suggest, .languages')) {
+			save('language', 'chosen');
+			if (target.closest('.suggest button')) root.removeAttribute('data-suggest');
+		}
 	});
 })();`;
 
-const octicon ='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z';
+const octicon = 'M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z';
 
 export default function page(t, languages) {
 	const at = (target) => rel(t.dir, target);
@@ -71,7 +97,7 @@ export default function page(t, languages) {
 		<meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
 		<meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
 		<script>
-${indent(themeScript, 3)}
+${indent(headScript(t, languages), 3)}
 		</script>
 		<link rel="stylesheet" href="${at('css/main.css')}">
 		<link rel="icon" href="${at('img/google_icon.ico')}">
@@ -85,6 +111,12 @@ ${languages.map((l) => `\t\t<link rel="alternate" hreflang="${l.lang}" href="${s
 		<link rel="alternate" hreflang="x-default" href="${site}">
 	</head>
 	<body>
+		<div class="suggest">
+${languages.filter((l) => l !== t).map((l) => `\t\t\t<p lang="${l.lang}">
+				<a href="${at(l.dir)}" hreflang="${l.lang}">${esc(l.ui.suggest)}</a>
+				<button type="button" aria-label="${esc(l.ui.close)}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
+			</p>`).join('\n')}
+		</div>
 		<header>
 			<nav aria-label="${esc(t.ui.languages)}">
 				<ul class="languages">

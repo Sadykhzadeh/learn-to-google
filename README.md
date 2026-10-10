@@ -4,6 +4,12 @@
 
 The main purpose of the site is to explain the advantages of googling questions in a polite way to people who are too lazy to Google for unknown reasons.
 
+## How it behaves
+
+- Each translation has its own URL, and a link always opens in the language it was shared in. If none of the reader's browser languages is the page's but one of them is another translation, a bar at the top offers that one; it stays away once they close it or pick a language.
+- The theme follows the system's light or dark setting; the button in the header overrides it, and the choice is remembered.
+- Everything works without JavaScript except those two, which simply do not appear.
+
 ## Editing
 
 Every translation is rendered from one template, so a change to the page is made once:
