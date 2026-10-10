@@ -4,7 +4,23 @@
 
 The main purpose of the site is to explain the advantages of googling questions in a polite way to people who are too lazy to Google for unknown reasons.
 
-*The code has NOT been polished and is provided "as is". There's a lot of code that is redundant and there are tons of improvements that can be made.*
+## Editing
+
+Every translation is rendered from one template, so a change to the page is made once:
+
+- `src/page.mjs` is the page.
+- `i18n/<lang>.mjs` holds the text of one translation; `i18n/index.mjs` lists them.
+- `css/main.css` is the stylesheet.
+
+The HTML that gets served (`index.html`, `lan/*/index.html`) is generated. Edit the sources, regenerate, and commit both:
+
+```sh
+node build.mjs
+```
+
+`node build.mjs --check` writes nothing and fails if a page is out of date or links to a local file that does not exist. The build needs Node 18 or newer and has no dependencies; GitHub Pages serves the committed files as they are, so nothing is built on deploy.
+
+To add a language, copy one of the files in `i18n/`, translate it, give it its own `lang` and `dir`, add it to `i18n/index.mjs` and run the build.
 
 ## Contributors
 1. [@byrvr](https://t.me/byrvr) for help with the website and translation into the Azerbaijani language.
