@@ -1,0 +1,21 @@
+name: check
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Pages match their sources and every local link resolves
+        run: node build.mjs --check
+      - name: HTML is valid
+        run: npx --yes html-validate@11.16.2 "*.html" "lan/*/index.html"
