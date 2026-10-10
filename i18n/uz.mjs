@@ -24,4 +24,7 @@ export default {
 	imageAlt: "Kichkina o'g'il otasining oldiga kelib, so'radi: 'Nega buni googledan qidirishim kerak?'",
 	footer: 'Ilhom — turli xil chatlardagi ahmoqona savollarni, googledan qidirish kerak... Link',
 	github: 'Githab da',
+	ui: {
+		languages: 'Til',
+	},
 };
