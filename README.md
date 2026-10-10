@@ -17,7 +17,7 @@ Every translation is rendered from one template, so a change to the page is made
 
 - `src/page.mjs` is the page; `src/share.js` is the script behind the form, inlined into it.
 - `i18n/<lang>.mjs` holds the text of one translation; `i18n/index.mjs` lists them.
-- `css/main.css` is the stylesheet.
+- `css/main.css` is the stylesheet. It is inlined into every page as well, so rebuild after changing it.
 
 The HTML that gets served (`index.html`, `lan/*/index.html`) is generated. Edit the sources, regenerate, and commit both:
 
