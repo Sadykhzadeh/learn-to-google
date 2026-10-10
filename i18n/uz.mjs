@@ -27,5 +27,6 @@ export default {
 	github: 'Githab da',
 	ui: {
 		languages: 'Til',
+		darkTheme: 'Tungi mavzu',
 	},
 };

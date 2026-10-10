@@ -26,5 +26,6 @@ export default {
 	github: 'Гітхаб',
 	ui: {
 		languages: 'Мова',
+		darkTheme: 'Темна тема',
 	},
 };

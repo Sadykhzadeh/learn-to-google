@@ -5,6 +5,32 @@
 		<meta charset="utf-8">
 		<title>Please, learn to google!</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="color-scheme" content="light dark">
+		<meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
+		<script>
+			(function () {
+				var root = document.documentElement, key = 'learn-to-google:theme', dark = matchMedia('(prefers-color-scheme: dark)'), chosen;
+				try { chosen = localStorage.getItem(key); } catch (e) {}
+				function apply() {
+					var theme = chosen || (dark.matches ? 'dark' : 'light'), button = document.querySelector('.theme');
+					root.setAttribute('data-theme', theme);
+					if (button) button.setAttribute('aria-pressed', theme === 'dark');
+				}
+				apply();
+				root.classList.add('js');
+				dark.addEventListener('change', apply);
+				document.addEventListener('DOMContentLoaded', apply);
+				document.addEventListener('click', function (event) {
+					if (!event.target.closest('.theme')) return;
+					var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+					// Picking what the system already wants means following the system again.
+					chosen = next === (dark.matches ? 'dark' : 'light') ? null : next;
+					try { chosen ? localStorage.setItem(key, chosen) : localStorage.removeItem(key); } catch (e) {}
+					apply();
+				});
+			})();
+		</script>
 		<link rel="stylesheet" href="../../css/main.css">
 		<link rel="icon" href="../../img/google_icon.ico">
 		<meta property="og:type" content="website">
@@ -31,6 +57,7 @@
 					<li><a href="../uz/" hreflang="uz" lang="uz">O'zbekcha</a></li>
 				</ul>
 			</nav>
+			<button class="theme" type="button" aria-pressed="false">Dark theme</button>
 		</header>
 		<main>
 			<h1>Please, learn to google!</h1>
