@@ -42,5 +42,9 @@ export default {
 		copy: 'Nusxalash',
 		copied: 'Havola nusxalandi.',
 		copyFailed: "Nusxalab bo'lmadi. Havolani belgilab, o'zingiz nusxalang.",
+		// 404.html, which shows all five languages.
+		notFound: 'Sahifa topilmadi',
+		notFoundText: "Bunday sahifa yo'q, bu yerda hatto Google ham yordam bera olmaydi.",
+		notFoundHome: 'Bosh sahifaga',
 	},
 };

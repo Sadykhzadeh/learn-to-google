@@ -41,5 +41,9 @@ export default {
 		copy: 'Copy',
 		copied: 'Link copied.',
 		copyFailed: "Couldn't copy. Select the link and copy it yourself.",
+		// 404.html, which shows all five languages.
+		notFound: 'Page not found',
+		notFoundText: "There is no such page, and even Google can't help with this one.",
+		notFoundHome: 'Go to the main page',
 	},
 };
