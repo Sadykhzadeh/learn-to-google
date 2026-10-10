@@ -15,6 +15,26 @@ import notFound from './src/404.mjs';
 const root = dirname(fileURLToPath(import.meta.url));
 const check = process.argv.includes('--check');
 
+// A translation that lacks a string would print "undefined" on the live page,
+// so every one must have exactly the strings the first one has, none empty.
+const keys = (strings, prefix = '') =>
+	Object.entries(strings).flatMap(([key, value]) =>
+		value && typeof value === 'object' && !Array.isArray(value) ? keys(value, `${prefix}${key}.`) : [`${prefix}${key}`]);
+const get = (strings, path) => path.split('.').reduce((value, key) => value?.[key], strings);
+const reference = keys(languages[0]);
+let incomplete = 0;
+for (const t of languages) {
+	const own = keys(t);
+	const problems = [
+		...reference.filter((k) => !own.includes(k)).map((k) => `missing ${k}`),
+		...own.filter((k) => !reference.includes(k)).map((k) => `${k} is not in i18n/${languages[0].lang}.mjs`),
+		...own.filter((k) => get(t, k) === '' && k !== 'dir').map((k) => `${k} is empty`),
+	];
+	for (const problem of problems) console.error(`i18n/${t.lang}.mjs: ${problem}`);
+	incomplete += problems.length;
+}
+if (incomplete) process.exit(1);
+
 const outputs = [
 	...languages.map((t) => ({ file: t.dir + 'index.html', html: page(t, languages) })),
 	{ file: '404.html', html: notFound(languages) },
