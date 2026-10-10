@@ -31,5 +31,16 @@ export default {
 		// Shown on the other translations to readers whose browser prefers this language.
 		suggest: "Bu sahifani o'zbek tilida o'qing",
 		close: 'Yopish',
+		// Under the example questions when the page was opened from a link with ?q=.
+		findAnswer: 'Javobni Googledan qidiring',
+		// The form that makes such links.
+		shareTitle: 'Bu sahifani savol bergan odamga yuboring',
+		shareQuestion: 'Sizga berilgan savol (ixtiyoriy)',
+		shareHint: "Savol sahifada javobni qidiradigan tugma bilan birga ko'rinadi.",
+		shareLanguage: 'Sahifa tili',
+		shareLink: 'Havola',
+		copy: 'Nusxalash',
+		copied: 'Havola nusxalandi.',
+		copyFailed: "Nusxalab bo'lmadi. Havolani belgilab, o'zingiz nusxalang.",
 	},
 };

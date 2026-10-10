@@ -7,6 +7,7 @@
 	--bg: #fff;
 	--ink: #333;
 	--muted: #555;
+	--line: #8a8a8a;
 	--bubble: #bfe9f9;
 	--picture: none;
 	--footer-bg: #334;
@@ -19,6 +20,7 @@
 	--bg: #1c1c1e;
 	--ink: #e2e2e2;
 	--muted: #a6a6a6;
+	--line: #6e6e72;
 	--bubble: #1e4250;
 	--picture: brightness(0.9);
 	}
@@ -28,6 +30,7 @@
 	--bg: #1c1c1e;
 	--ink: #e2e2e2;
 	--muted: #a6a6a6;
+	--line: #6e6e72;
 	--bubble: #1e4250;
 	--picture: brightness(0.9);
 }
@@ -258,4 +261,83 @@ header nav,
 }
 .suggest button:hover {
 	background: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+/* Opened from a link with ?q=: the search for the reader's own question. */
+.google-it a,
+.share button {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	border: 0;
+	border-radius: 0.25rem;
+	background: var(--bubble);
+	color: var(--ink);
+	font: inherit;
+	font-weight: 700;
+	text-decoration: none;
+	cursor: pointer;
+}
+.google-it a:hover,
+.share button:hover {
+	background: color-mix(in srgb, var(--bubble) 85%, var(--ink));
+}
+
+/* The form that makes those links. Needs the script, like the theme button. */
+.share {
+	display: none;
+	margin: 3rem 0 2rem;
+}
+.js .share {
+	display: block;
+}
+.share h2 {
+	margin: 0;
+	font-size: 1.5rem;
+	line-height: 1.25;
+}
+.share label {
+	display: block;
+	margin-top: 1.25rem;
+	font-size: 1rem;
+	font-weight: 700;
+}
+.share input,
+.share select {
+	box-sizing: border-box;
+	width: 100%;
+	margin-top: 0.375rem;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--line);
+	border-radius: 0.25rem;
+	background: var(--bg);
+	color: inherit;
+	font: inherit;
+	font-size: 1.0625rem;
+}
+.share select {
+	width: auto;
+}
+.share .copy {
+	display: flex;
+	gap: 0.5rem;
+	margin-top: 0.375rem;
+}
+.share .copy input {
+	min-width: 0;
+	margin: 0;
+	color: var(--muted);
+}
+.share .copy button {
+	flex: none;
+	font-size: 1.0625rem;
+}
+.share .hint {
+	margin: 0.375rem 0 0;
+	color: var(--muted);
+	font-size: 0.9375rem;
+	line-height: 1.4;
+}
+.share [role="status"] {
+	/* Holds the line, so the message does not push the footer down. */
+	min-height: 1.4em;
 }
