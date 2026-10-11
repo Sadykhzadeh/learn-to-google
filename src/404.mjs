@@ -1,11 +1,16 @@
 // The page GitHub Pages serves for any missing URL under the site. It can be
 // served at any depth, so every link is absolute, and it loads nothing else:
-// styles are inline, there is no script beyond picking the stored theme, and
-// it reads the same with or without a connection. It speaks all five
-// languages at once, since a broken URL says nothing about the reader's.
+// styles are inline, the only script picks the stored theme and forwards old
+// links (below), and it reads the same with or without a connection. It
+// speaks all five languages at once, since a broken URL says nothing about
+// the reader's.
 import { esc, site } from './page.mjs';
 
 const base = new URL(site).pathname;
+
+// Until April 2021 the translations lived at az/, en/ and ua/ instead of
+// under lan/, and links to them are still sitting in old chats.
+const moved = new RegExp(`^${base}(az|en|ua)(/|$)`);
 
 export default function notFound(languages) {
 	return `<!DOCTYPE html>
@@ -19,6 +24,7 @@ export default function notFound(languages) {
 		<meta name="color-scheme" content="light dark">
 		<link rel="icon" href="${base}img/google_icon.ico">
 		<script>
+			if (${moved}.test(location.pathname)) location.replace('${base}lan/' + location.pathname.slice(${base.length}) + location.search + location.hash);
 			try { var theme = localStorage.getItem('learn-to-google:theme'); if (theme) document.documentElement.setAttribute('data-theme', theme); } catch (e) {}
 		</script>
 		<style>
