@@ -9,6 +9,7 @@
 		<meta name="color-scheme" content="light dark">
 		<link rel="icon" href="/learn-to-google/img/google_icon.ico">
 		<script>
+			if (/^\/learn-to-google\/(az|en|ua)(\/|$)/.test(location.pathname)) location.replace('/learn-to-google/lan/' + location.pathname.slice(17) + location.search + location.hash);
 			try { var theme = localStorage.getItem('learn-to-google:theme'); if (theme) document.documentElement.setAttribute('data-theme', theme); } catch (e) {}
 		</script>
 		<style>
