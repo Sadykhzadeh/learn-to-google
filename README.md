@@ -28,6 +28,15 @@ node build.mjs
 
 `node build.mjs --check` writes nothing and fails if a page is out of date or links to a local file that does not exist. The build needs Node 18 or newer and has no dependencies; GitHub Pages serves the committed files as they are, so nothing is built on deploy.
 
+Every push runs that check and two more, which are worth running before you commit:
+
+```sh
+node --test
+npx html-validate@11.16.2 "*.html" "lan/*/index.html"
+```
+
+The tests in `test/` run the page's own scripts (the one that shows the question from `?q=`, and the form in `src/share.js`) against stand-ins for the page, so they need no browser. html-validate checks the generated pages' markup.
+
 To add a language, copy one of the files in `i18n/`, translate it, give it its own `lang` and `dir`, add it to `i18n/index.mjs` and run the build. A new string goes into every file in `i18n/`: the build stops and names the string if a translation is missing one, has one the others do not, or leaves one empty.
 
 Each picture is a PNG (`bad-good.png`, kept for share previews and the full-size link) with two WebP copies next to it, which is what browsers actually download: `bad-good.webp` at full size and `bad-good-800.webp` 800px wide, both at quality 80. If you replace a PNG, make the WebP copies again, for example with `cwebp -q 80 -m 6 bad-good.png -o bad-good.webp` and the same with `-resize 800 0` for the smaller one.
