@@ -158,7 +158,7 @@ ${languages.map((l) => `\t\t\t\t\t<li><a href="${at(l.dir)}" hreflang="${l.lang}
 			<h1>${esc(t.title)}</h1>
 			<p>${esc(t.intro)}</p>
 			<div class="dialog-line -you" id="asked" hidden>
-				<div class="content"></div>
+				<div class="content" dir="auto"></div>
 			</div>
 ${t.questions.map((q) => `\t\t\t<div class="dialog-line -you">
 				<div class="content">${esc(q)}</div>
@@ -179,7 +179,7 @@ ${indent(t.body, 3)}
 			<form class="share" aria-labelledby="share-title">
 				<h2 id="share-title">${esc(t.ui.shareTitle)}</h2>
 				<label for="share-q">${esc(t.ui.shareQuestion)}</label>
-				<input id="share-q" name="q" type="text" maxlength="200" autocomplete="off" placeholder="${esc(t.questions[t.questions.length - 1])}" aria-describedby="share-q-hint">
+				<input id="share-q" name="q" type="text" dir="auto" maxlength="200" autocomplete="off" placeholder="${esc(t.questions[t.questions.length - 1])}" aria-describedby="share-q-hint">
 				<p class="hint" id="share-q-hint">${esc(t.ui.shareHint)}</p>
 				<label for="share-lang">${esc(t.ui.shareLanguage)}</label>
 				<select id="share-lang" name="lang">
