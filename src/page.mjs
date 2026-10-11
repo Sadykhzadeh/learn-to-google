@@ -85,8 +85,9 @@ const headScript = (t, languages) => `(function () {
 // Fills in the question from a link made with the form below (?q=...). It
 // sits right after the two elements it fills, so they are in place before the
 // rest of the page is parsed and nothing below them jumps.
-const askedScript = `(function () {
-	var q = (new URLSearchParams(location.search).get('q') || '').trim().slice(0, 200);
+export const askedScript = `(function () {
+	// Cut by characters, not code units: a pair cut in half makes encodeURIComponent throw.
+	var q = Array.from((new URLSearchParams(location.search).get('q') || '').trim()).slice(0, 200).join('');
 	if (!q) return;
 	var asked = document.getElementById('asked'), search = document.getElementById('google-it');
 	asked.firstElementChild.textContent = q;

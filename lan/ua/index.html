@@ -115,7 +115,7 @@
 			<p class="google-it" id="google-it" hidden><a target="_blank" rel="noopener noreferrer" href="https://www.google.com/">Знайти відповідь у Google</a></p>
 			<script>
 				(function () {
-					var q = (new URLSearchParams(location.search).get('q') || '').trim().slice(0, 200);
+					var q = Array.from((new URLSearchParams(location.search).get('q') || '').trim()).slice(0, 200).join('');
 					if (!q) return;
 					var asked = document.getElementById('asked'), search = document.getElementById('google-it');
 					asked.firstElementChild.textContent = q;
