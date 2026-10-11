@@ -138,6 +138,7 @@ ${script(headScript(t, languages), 3)}
 		<meta property="og:description" content="${esc(t.description)}">
 		<meta name="description" content="${esc(t.description)}">
 		<meta property="og:url" content="${site}${t.dir}">
+		<meta name="twitter:card" content="summary_large_image">
 		<link rel="canonical" href="${site}${t.dir}">
 ${languages.map((l) => `\t\t<link rel="alternate" hreflang="${l.lang}" href="${site}${l.dir}">`).join('\n')}
 		<link rel="alternate" hreflang="x-default" href="${site}">
