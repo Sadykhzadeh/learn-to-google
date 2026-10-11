@@ -15,10 +15,12 @@
 				function get(key) { try { return store.getItem('learn-to-google:' + key); } catch (e) {} }
 				function save(key, value) { try { value ? store.setItem('learn-to-google:' + key, value) : store.removeItem('learn-to-google:' + key); } catch (e) {} }
 				var chosen = get('theme');
+				var toolbar = document.querySelectorAll('meta[name="theme-color"]'), toolbarColor = { light: toolbar[0].content, dark: toolbar[1].content };
 				function apply() {
 					var theme = chosen || (dark.matches ? 'dark' : 'light'), button = document.querySelector('.theme');
 					root.setAttribute('data-theme', theme);
 					if (button) button.setAttribute('aria-pressed', theme === 'dark');
+					for (var i = 0; i < toolbar.length; i++) toolbar[i].content = toolbarColor[theme];
 				}
 				apply();
 				root.classList.add('js');
