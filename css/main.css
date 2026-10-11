@@ -342,3 +342,20 @@ header nav,
 	/* Holds the line, so the message does not push the footer down. */
 	min-height: 1.4em;
 }
+
+/*
+ * High-contrast modes (Windows contrast themes) drop every background, which
+ * would leave the bubbles, the buttons and the language offer as loose text
+ * and the bubbles' tails as stray ticks. They get a border instead.
+ */
+@media (forced-colors: active) {
+	.dialog-line .content,
+	.google-it a,
+	.share button,
+	.suggest p {
+	border: 1px solid;
+	}
+	.dialog-line .content::before {
+	display: none;
+	}
+}

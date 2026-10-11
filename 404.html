@@ -21,6 +21,7 @@
 			body { max-width: 34rem; margin: 0 auto; padding: 3rem 1.25rem; background: var(--bg); color: var(--ink); font: 1.0625rem/1.5 sans-serif; }
 			h1 { position: relative; display: inline-block; margin: 0 0 2rem; padding: 0.25rem 1.5rem; border-radius: 0.25rem; background: var(--bubble); font-size: 3rem; line-height: 1.25; }
 			h1::before { position: absolute; left: -0.5rem; top: 1.5rem; border-top: 0.5rem solid transparent; border-bottom: 0.5rem solid transparent; border-right: 0.5rem solid var(--bubble); content: ''; }
+			@media (forced-colors: active) { h1 { border: 1px solid; } h1::before { display: none; } }
 			section { margin-bottom: 1.5rem; }
 			h2 { margin: 0; font-size: 1.125rem; }
 			p { margin: 0.25rem 0 0; color: var(--muted); }
