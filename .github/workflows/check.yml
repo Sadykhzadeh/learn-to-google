@@ -17,7 +17,7 @@ jobs:
           node-version: 24
       - name: Pages match their sources and every local link resolves
         run: node build.mjs --check
-      - name: The question from a link is shown safely
+      - name: The form makes links that bring the question back, shown safely
         run: node --test
       - name: HTML is valid
         run: npx --yes html-validate@11.16.2 "*.html" "lan/*/index.html"
