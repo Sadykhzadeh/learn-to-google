@@ -83,6 +83,15 @@ const headScript = (t, languages) => `(function () {
 			if (target.closest('.suggest button')) root.removeAttribute('data-suggest');
 		}
 	});
+
+	// Back and Forward can bring the page back exactly as it was left, so
+	// catch up with a theme or a language picked on another page since.
+	addEventListener('pageshow', function (event) {
+		if (!event.persisted) return;
+		chosen = get('theme');
+		apply();
+		if (get('language')) root.removeAttribute('data-suggest');
+	});
 })();`;
 
 // Fills in the question from a link made with the form below (?q=...). It
