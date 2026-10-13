@@ -67,7 +67,6 @@ main {
 img {
 	max-width: 100%;
 	height: auto;
-	width: auto\9;
 }
 main img {
 	/* The screenshot is white; take the edge off it on a dark page. */
@@ -110,18 +109,6 @@ footer a {
 	line-height: 1.3em;
 	margin-bottom: 0.70rem;
 }
-.dialog-line:last-child {
-	margin-bottom: 0;
-}
-.dialog-line .name {
-	width: 7rem;
-	float: left;
-	padding-top: 0.325rem;
-	font-weight: 700;
-	line-height: 1.1rem;
-	color: #8ca8b4;
-	text-align: right;
-}
 .dialog-line .content {
 	position: relative;
 	padding: 0.337rem 1.5rem;
@@ -153,26 +140,12 @@ footer a {
 	.dialog-line {
 	margin-bottom: 1rem;
 	}
-	.dialog-line .name {
-	width: auto;
-	float: none;
-	text-align: left;
-	padding-top: 0;
-	}
 	.dialog-line .content {
 	margin-left: 0;
 	margin-right: 0;
 	}
 	.dialog-line .content::before {
 	display: none;
-	}
-	.dialog-line .time {
-	right: 0;
-	top: -1rem;
-	}
-	.dialog-comment {
-	margin-bottom: 0.75rem;
-	text-align: left;
 	}
 }
 
