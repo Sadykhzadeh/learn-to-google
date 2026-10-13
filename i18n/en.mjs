@@ -6,7 +6,8 @@ export default {
 	description: "An article about what does 'to google' mean and why it's important.",
 	intro: "Don't ask questions in chats/forums like:",
 	questions: ['Why do we need inheritance?', 'Why is the sky blue?', 'What is polymorphism?'],
-	verdict: 'These kinds of questions you <s>can</s> should <b>google</b> first!',
+	// The crossed-out word is hidden from screen readers, which would read it as if it still stood.
+	verdict: 'These kinds of questions you <s aria-hidden="true">can</s> should <b>google</b> first!',
 	body: `
 <p><b>To google</b> means:</p>
 <ol>

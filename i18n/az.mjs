@@ -6,7 +6,8 @@ export default {
 	description: 'Bu məqalə Google-dan istifadə etmək bacarığına, və onun vacibliyinə həsr olunub.',
 	intro: 'Söhbətlərdə/forumlarda bu tipli suallar verməyin:',
 	questions: ['Varislik nə üçün lazım?', 'Səma niyə göydür?', 'Polimorfizm nədir?'],
-	verdict: 'Belə sualları Google vasitəsi ilə axtarmaq <s>olar</s> <b>lazımdır!</b>',
+	// The crossed-out word is hidden from screen readers, which would read it as if it still stood.
+	verdict: 'Belə sualları Google vasitəsi ilə axtarmaq <s aria-hidden="true">olar</s> <b>lazımdır!</b>',
 	body: `
 <p><b>Google-dan istifadə etmək</b> bu deməkdir:</p>
 <ol>
