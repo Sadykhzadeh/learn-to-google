@@ -209,6 +209,12 @@ header nav,
 }
 
 /* Offers the reader's own language; the script in <head> shows at most one. */
+.suggest {
+	display: none;
+}
+[data-suggest] .suggest {
+	display: block;
+}
 .suggest p {
 	display: none;
 	justify-content: center;
