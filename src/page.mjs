@@ -57,7 +57,8 @@ export const headScript = (t, languages) => `(function () {
 	}
 	apply();
 	root.classList.add('js');
-	dark.addEventListener('change', apply);
+	// Safari before 14 has only addListener for this.
+	dark.addEventListener ? dark.addEventListener('change', apply) : dark.addListener(apply);
 	document.addEventListener('DOMContentLoaded', apply);
 
 	var others = ${JSON.stringify(languages.filter((l) => l !== t).map((l) => l.lang))};

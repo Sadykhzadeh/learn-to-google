@@ -13,7 +13,7 @@ const light = '#fff', dark = '#1c1c1e';
 // `on` lists what a clicked element is inside of, e.g. ['.suggest', '.suggest button'].
 const clicked = (...on) => ({ target: { closest: (selector) => selector.split(', ').some((s) => on.includes(s)) } });
 
-function open({ lang = 'ru', system = 'light', stored = {}, browser = [lang], storage = true } = {}) {
+function open({ lang = 'ru', system = 'light', stored = {}, browser = [lang], storage = true, safari13 = false } = {}) {
 	const attributes = {}, classes = [], listeners = {}, styles = [];
 	const root = {
 		setAttribute: (name, value) => { attributes[name] = String(value); },
@@ -25,6 +25,11 @@ function open({ lang = 'ru', system = 'light', stored = {}, browser = [lang], st
 	const button = { pressed: null, setAttribute(name, value) { this.pressed = String(value); } };
 	let parsed = false;
 	const media = { matches: system === 'dark', addEventListener: (type, f) => { listeners[`media:${type}`] = f; } };
+	// Safari before 14 only has the older way to listen.
+	if (safari13) {
+		delete media.addEventListener;
+		media.addListener = (f) => { listeners['media:change'] = f; };
+	}
 	const store = new Map(Object.entries(stored).map(([key, value]) => [`learn-to-google:${key}`, value]));
 	const document = {
 		documentElement: root,
@@ -162,6 +167,16 @@ test('still themes and switches without storage', () => {
 	page.parse();
 	assert.equal(page.theme, 'dark');
 	assert.equal(page.offer, 'en');
+	page.click('.theme');
+	assert.equal(page.theme, 'light');
+});
+
+test('works in Safari 13 and older, which listen to the system the old way', () => {
+	const page = open({ system: 'light', browser: ['en-US'], safari13: true });
+	page.parse();
+	assert.equal(page.offer, 'en');
+	page.system('dark');
+	assert.equal(page.theme, 'dark');
 	page.click('.theme');
 	assert.equal(page.theme, 'light');
 });
