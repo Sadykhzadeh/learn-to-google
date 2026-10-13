@@ -57,6 +57,8 @@ main {
 	padding: 0 0.75rem;
 	font-size: 1.25rem;
 	line-height: 1.5em;
+	/* A word wider than the screen breaks instead of widening the page. */
+	overflow-wrap: break-word;
 }
 
 .quote {
