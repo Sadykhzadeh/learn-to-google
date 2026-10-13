@@ -6,7 +6,8 @@ export default {
 	description: 'Стаття про те, що таке ґуглити і чому це важливо',
 	intro: 'Не задавайте в чатах/форумах питання типу:',
 	questions: ['Навіщо потрібне наслідування?', 'Чому небо синє?', 'Що таке поліморфізм?'],
-	verdict: 'Такі питання <s>можна</s> потрібно в першу чергу <b>ґуглити!</b>',
+	// The crossed-out word is hidden from screen readers, which would read it as if it still stood.
+	verdict: 'Такі питання <s aria-hidden="true">можна</s> потрібно в першу чергу <b>ґуглити!</b>',
 	body: `
 <p><b>Ґуглити</b> значить:</p>
 <ol>

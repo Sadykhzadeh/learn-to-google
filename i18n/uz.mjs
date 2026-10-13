@@ -6,7 +6,8 @@ export default {
 	description: 'Maqola Googleda qidirish nima va bu nima uchun zarurligi haqida!',
 	intro: 'Chat/forumlarda ushbu turdagi savvolarni bermang:',
 	questions: ['Nega meros qoldirish kerak?', "Nima uchun osmon ko'k?", 'Polimorfizm nima?'],
-	verdict: 'Bu turdagi savollarni avvalo googledan qidirishingiz <s>(mumkin)</s> <b>kerak!</b>',
+	// The crossed-out word is hidden from screen readers, which would read it as if it still stood.
+	verdict: 'Bu turdagi savollarni avvalo googledan qidirishingiz <s aria-hidden="true">(mumkin)</s> <b>kerak!</b>',
 	body: `
 <p><b>Qanday</b> qidirish kerak:</p>
 <ol>
