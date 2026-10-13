@@ -35,7 +35,7 @@ node --test
 npx html-validate@11.16.2 "*.html" "lan/*/index.html"
 ```
 
-The tests in `test/` run the page's own scripts (the one that shows the question from `?q=`, and the form in `src/share.js`) against stand-ins for the page, so they need no browser. html-validate checks the generated pages' markup.
+The tests in `test/` run the page's own scripts (the one in `<head>` that sets the theme and offers a language, the one that shows the question from `?q=`, and the form in `src/share.js`) against stand-ins for the page, so they need no browser. html-validate checks the generated pages' markup.
 
 To add a language, copy one of the files in `i18n/`, translate it, give it its own `lang` and `dir`, add it to `i18n/index.mjs` and run the build. A new string goes into every file in `i18n/`: the build stops and names the string if a translation is missing one, has one the others do not, or leaves one empty.
 
