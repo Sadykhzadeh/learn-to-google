@@ -24,7 +24,7 @@
 				}
 				apply();
 				root.classList.add('js');
-				dark.addEventListener('change', apply);
+				dark.addEventListener ? dark.addEventListener('change', apply) : dark.addListener(apply);
 				document.addEventListener('DOMContentLoaded', apply);
 
 				var others = ["ru","az","uk","uz"];
