@@ -154,12 +154,12 @@ ${languages.map((l) => `\t\t<link rel="alternate" hreflang="${l.lang}" href="${s
 		<link rel="alternate" hreflang="x-default" href="${site}">
 	</head>
 	<body>
-		<div class="suggest">
+		<aside class="suggest">
 ${languages.filter((l) => l !== t).map((l) => `\t\t\t<p lang="${l.lang}">
 				<a href="${at(l.dir)}" hreflang="${l.lang}">${esc(l.ui.suggest)}</a>
 				<button type="button" aria-label="${esc(l.ui.close)}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button>
 			</p>`).join('\n')}
-		</div>
+		</aside>
 		<header>
 			<nav aria-label="${esc(t.ui.languages)}">
 				<ul class="languages">
