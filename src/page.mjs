@@ -41,7 +41,7 @@ const script = (code, depth) => indent(code.split(/\r?\n/).filter((line) => !/^\
 // is another translation, the bar offering it is shown. Never once they have
 // closed it or picked a language themselves, and never as a redirect: a link
 // shared in a particular language has to open in that language.
-const headScript = (t, languages) => `(function () {
+export const headScript = (t, languages) => `(function () {
 	var root = document.documentElement, store = {}, dark = matchMedia('(prefers-color-scheme: dark)');
 	try { store = localStorage; } catch (e) {}
 	function get(key) { try { return store.getItem('learn-to-google:' + key); } catch (e) {} }
