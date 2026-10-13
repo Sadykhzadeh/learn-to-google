@@ -145,6 +145,9 @@ ${script(headScript(t, languages), 3)}
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="${esc(t.title)}">
 		<meta property="og:image" content="${site}${t.image}">
+		<meta property="og:image:width" content="${width}">
+		<meta property="og:image:height" content="${height}">
+		<meta property="og:image:alt" content="${esc(t.imageAlt)}">
 		<meta property="og:description" content="${esc(t.description)}">
 		<meta name="description" content="${esc(t.description)}">
 		<meta property="og:url" content="${site}${t.dir}">
