@@ -39,7 +39,7 @@ The tests in `test/` run the page's own scripts (the one in `<head>` that sets t
 
 To add a language, copy one of the files in `i18n/`, translate it, give it its own `lang` and `dir`, add it to `i18n/index.mjs` and run the build. A new string goes into every file in `i18n/`: the build stops and names the string if a translation is missing one, has one the others do not, or leaves one empty.
 
-Each picture is a PNG (`bad-good.png`, kept for share previews and the full-size link) with two WebP copies next to it, which is what browsers actually download: `bad-good.webp` at full size and `bad-good-800.webp` 800px wide, both at quality 80. If you replace a PNG, make the WebP copies again, for example with `cwebp -q 80 -m 6 bad-good.png -o bad-good.webp` and the same with `-resize 800 0` for the smaller one.
+Each picture is a PNG (`bad-good.png`, kept for share previews and the full-size link) with two WebP copies next to it, which is what browsers actually download: `bad-good.webp` at full size and `bad-good-800.webp` 800px wide, both at quality 80. If you replace a PNG, keep it under 300 KB, or WhatsApp may leave the picture out of its preview (`oxipng -o max --strip safe -Z bad-good.png` makes one smaller without changing a pixel), and make the WebP copies again, for example with `cwebp -q 80 -m 6 bad-good.png -o bad-good.webp` and the same with `-resize 800 0` for the smaller one.
 
 ## Contributors
 1. [@byrvr](https://t.me/byrvr) for help with the website and translation into the Azerbaijani language.
