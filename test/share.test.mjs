@@ -86,6 +86,18 @@ test('keeps letters readable and spaces as plus signs', () => {
 	assert.equal(open().type('Что такое ООП?'), home + '?q=Что+такое+ООП%3F');
 });
 
+test('leaves out nothing a chat would cut the link short at', () => {
+	const page = open();
+	for (const q of ['Help!', 'How do I exit vim...', 'What is OOP (in Java)', 'a (b c', 'a b) c', 'smile :)', "it's mine'", 'C*', 'snake_', 'tilde~', 'dash-', 'Why?', 'list:', 'a,']) {
+		const link = page.type(q);
+		assert.match(link, /([A-Za-z0-9]|%[0-9A-F]{2})$/, link);
+		assert.doesNotMatch(link, /[()]/, link);
+		assert.equal(asked(link), q);
+	}
+	assert.equal(page.type('Help!'), home + '?q=Help%21');
+	assert.equal(page.type("it's (not) a.b-c!"), home + "?q=it's+%28not%29+a.b-c%21");
+});
+
 test('links to the language picked', () => {
 	const page = open();
 	page.elements.lang.value = 'https://azer.is-a.dev/learn-to-google/';
