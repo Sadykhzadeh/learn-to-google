@@ -10,11 +10,17 @@
 	// Letters stay readable, so a question in Cyrillic does not turn into a
 	// wall of %D0%A7 when the link is pasted into a chat; browsers encode them
 	// on the way out. Spaces become "+", and anything that means something in
-	// a URL is percent-encoded.
+	// a URL is percent-encoded. So are brackets, and punctuation at the very
+	// end, which chats leave out of the link they make: "Help!" would arrive
+	// as "Help", and "a (b" as "a ".
 	function encode(text) {
-		return Array.from(text, function (c) {
+		var chars = Array.from(text), last = chars.length - 1;
+		return chars.map(function (c, i) {
 			if (c === ' ') return '+';
-			if (/[A-Za-z0-9._~-]/.test(c) || (c.charCodeAt(0) > 127 && /[\p{L}\p{N}\p{M}]/u.test(c))) return c;
+			if (/[A-Za-z0-9]/.test(c) || (c.charCodeAt(0) > 127 && /[\p{L}\p{N}\p{M}]/u.test(c))) return c;
+			if (i < last && /[._~!'*-]/.test(c)) return c;
+			// encodeURIComponent leaves these as they are.
+			if (/[._~!'()*-]/.test(c)) return '%' + c.charCodeAt(0).toString(16).toUpperCase();
 			return encodeURIComponent(c);
 		}).join('');
 	}
