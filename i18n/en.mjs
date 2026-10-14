@@ -40,6 +40,7 @@ export default {
 		shareLanguage: 'Page language',
 		shareLink: 'Link',
 		copy: 'Copy',
+		share: 'Share',
 		copied: 'Link copied.',
 		copyFailed: "Couldn't copy. Select the link and copy it yourself.",
 		// 404.html, which shows all five languages.

@@ -6,7 +6,7 @@ The main purpose of the site is to explain the advantages of googling questions 
 
 ## How it behaves
 
-- The form at the bottom of the page makes a link for whoever asked: pick the language, optionally paste their question, and copy (Enter copies too). The question travels as `?q=`, for example [`/lan/en/?q=What+is+polymorphism%3F`](https://azer.is-a.dev/learn-to-google/lan/en/?q=What+is+polymorphism%3F), and the page shows it first among the example questions, with a button that searches Google for it.
+- The form at the bottom of the page makes a link for whoever asked: pick the language, optionally paste their question, and copy (Enter copies too). Where the browser can pass a link to another app, as on most phones, a Share button next to Copy opens its share sheet. The question travels as `?q=`, for example [`/lan/en/?q=What+is+polymorphism%3F`](https://azer.is-a.dev/learn-to-google/lan/en/?q=What+is+polymorphism%3F), and the page shows it first among the example questions, with a button that searches Google for it.
 - Each translation has its own URL, and a link always opens in the language it was shared in. If none of the reader's browser languages is the page's but one of them is another translation, a bar at the top offers that one; it stays away once they close it or pick a language.
 - The theme follows the system's light or dark setting; the button in the header overrides it, and the choice is remembered.
 - A link from before April 2021, when the translations lived at `/en/`, `/az/` and `/ua/` instead of under `/lan/`, is forwarded by the 404 page to where that page is now.

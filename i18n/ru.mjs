@@ -40,6 +40,7 @@ export default {
 		shareLanguage: 'Язык страницы',
 		shareLink: 'Ссылка',
 		copy: 'Скопировать',
+		share: 'Поделиться',
 		copied: 'Ссылка скопирована.',
 		copyFailed: 'Не получилось скопировать. Выделите ссылку и скопируйте вручную.',
 		// 404.html, which shows all five languages.

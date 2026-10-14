@@ -40,6 +40,7 @@ export default {
 		shareLanguage: 'Səhifənin dili',
 		shareLink: 'Keçid',
 		copy: 'Kopyala',
+		share: 'Paylaş',
 		copied: 'Keçid kopyalandı.',
 		copyFailed: 'Kopyalamaq alınmadı. Keçidi seçin və özünüz kopyalayın.',
 		// 404.html, which shows all five languages.
