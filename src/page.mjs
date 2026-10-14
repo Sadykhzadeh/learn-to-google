@@ -79,7 +79,7 @@ export const headScript = (t, languages) => `(function () {
 			chosen = next === (dark.matches ? 'dark' : 'light') ? null : next;
 			save('theme', chosen);
 			apply();
-		} else if (target.closest('.suggest, .languages')) {
+		} else if (target.closest('.suggest a, .suggest button, .languages a')) {
 			save('language', 'chosen');
 			if (target.closest('.suggest button')) root.removeAttribute('data-suggest');
 		}

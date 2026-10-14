@@ -142,8 +142,16 @@ test('stops offering once the reader closes the offer or picks a language', () =
 	assert.equal(open({ browser: ['en-US'], stored: { language: 'chosen' } }).offer, undefined);
 
 	const picked = open({ browser: ['en-US'] });
-	picked.click('.languages');
+	picked.click('.languages', '.languages a');
 	assert.equal(picked.stored('language'), 'chosen');
+});
+
+test('keeps offering after a tap on the bar or the language list that misses every link', () => {
+	const page = open({ browser: ['en-US'] });
+	page.click('.suggest');
+	page.click('.languages');
+	assert.equal(page.offer, 'en');
+	assert.equal(page.stored('language'), undefined);
 });
 
 test('catches up with what was picked on another page after Back or Forward', () => {
