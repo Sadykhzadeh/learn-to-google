@@ -301,10 +301,13 @@ header nav,
 }
 .share .copy {
 	display: flex;
+	/* On a narrow screen the buttons go under the link instead of squeezing it. */
+	flex-wrap: wrap;
 	gap: 0.5rem;
 	margin-top: 0.375rem;
 }
 .share .copy input {
+	flex: 1 1 7rem;
 	min-width: 0;
 	margin: 0;
 	color: var(--muted);
@@ -312,6 +315,9 @@ header nav,
 .share .copy button {
 	flex: none;
 	font-size: 1.0625rem;
+}
+.share .copy button[hidden] {
+	display: none;
 }
 .share .hint {
 	margin: 0.375rem 0 0;

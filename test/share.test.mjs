@@ -11,14 +11,15 @@ import { runInNewContext } from 'node:vm';
 const code = readFileSync(new URL('../src/share.js', import.meta.url), 'utf8');
 const home = 'https://azer.is-a.dev/learn-to-google/lan/en/';
 
-function open({ search = '', clipboard, execCommand = () => false } = {}) {
+function open({ search = '', clipboard, share, execCommand = () => false } = {}) {
 	const handlers = {};
 	let focused;
 	const on = (name) => (type, handler) => { handlers[`${name}:${type}`] = handler; };
 	const field = (name, value) => ({ value, addEventListener: on(name), focus() { focused = name; }, select() {} });
 	const elements = { q: field('q', ''), lang: field('lang', home), link: field('link', '') };
 	const status = { textContent: '', getAttribute: (name) => name };
-	const form = { elements, querySelector: () => status, addEventListener: on('form') };
+	const send = { hidden: true, addEventListener: on('send') };
+	const form = { elements, querySelector: (selector) => (selector === '.send' ? send : status), addEventListener: on('form') };
 	const links = [{ search: '' }, { search: '' }];
 	const document = {
 		querySelector: () => form,
@@ -28,7 +29,7 @@ function open({ search = '', clipboard, execCommand = () => false } = {}) {
 	runInNewContext(code, {
 		document,
 		location: { search },
-		navigator: { clipboard },
+		navigator: { clipboard, share },
 		window: { isSecureContext: true },
 		URLSearchParams,
 		encodeURIComponent,
@@ -37,6 +38,7 @@ function open({ search = '', clipboard, execCommand = () => false } = {}) {
 	return {
 		elements,
 		status,
+		send,
 		links,
 		type(value) {
 			elements.q.value = value;
@@ -45,6 +47,10 @@ function open({ search = '', clipboard, execCommand = () => false } = {}) {
 		},
 		submit() {
 			handlers['form:submit']({ preventDefault() {} });
+			return new Promise((resolve) => setImmediate(resolve));
+		},
+		share() {
+			handlers['send:click']();
 			return new Promise((resolve) => setImmediate(resolve));
 		},
 		focused: () => focused,
@@ -124,6 +130,25 @@ test('points at the link and says so when nothing can copy', async () => {
 	await page.submit();
 	assert.equal(page.status.textContent, 'data-failed');
 	assert.equal(page.focused(), 'link');
+});
+
+test('has no share button where the browser cannot share', () => {
+	assert.equal(open().send.hidden, true);
+});
+
+test('shares the link as it stands, question included', async () => {
+	const shared = [];
+	const page = open({ share: async (data) => { shared.push(data); } });
+	assert.equal(page.send.hidden, false);
+	page.type('Help!');
+	await page.share();
+	assert.deepEqual(shared.map((data) => data.url), [home + '?q=Help%21']);
+});
+
+test('says nothing when the share sheet is closed without sharing', async () => {
+	const page = open({ share: () => Promise.reject(new Error('AbortError')) });
+	await page.share();
+	assert.equal(page.status.textContent, '');
 });
 
 test('carries a question from the address into the language links', () => {

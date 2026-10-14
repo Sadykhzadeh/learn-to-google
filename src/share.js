@@ -41,6 +41,18 @@
 		});
 	}
 
+	// Where the browser can hand the link to another app (phones, mostly),
+	// there is a button that opens its share sheet.
+	var send = form.querySelector('.send');
+	if (navigator.share) {
+		send.hidden = false;
+		send.addEventListener('click', function () {
+			update();
+			// Closing the sheet without picking anything rejects; that is fine.
+			navigator.share({ url: link.value }).catch(function () {});
+		});
+	}
+
 	question.addEventListener('input', update);
 	language.addEventListener('change', update);
 	link.addEventListener('focus', function () { link.select(); });

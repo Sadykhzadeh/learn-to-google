@@ -41,6 +41,7 @@ export default {
 		shareLanguage: 'Sahifa tili',
 		shareLink: 'Havola',
 		copy: 'Nusxalash',
+		share: 'Ulashish',
 		copied: 'Havola nusxalandi.',
 		copyFailed: "Nusxalab bo'lmadi. Havolani belgilab, o'zingiz nusxalang.",
 		// 404.html, which shows all five languages.

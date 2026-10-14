@@ -206,6 +206,7 @@ ${languages.map((l) => `\t\t\t\t\t<option value="${site}${l.dir}" lang="${l.lang
 				<div class="copy">
 					<input id="share-link" name="link" type="text" readonly value="${site}${t.dir}">
 					<button type="submit">${esc(t.ui.copy)}</button>
+					<button type="button" class="send" hidden>${esc(t.ui.share)}</button>
 				</div>
 				<p class="hint" role="status" data-copied="${esc(t.ui.copied)}" data-failed="${esc(t.ui.copyFailed)}"></p>
 			</form>
