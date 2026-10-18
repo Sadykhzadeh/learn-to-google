@@ -33,6 +33,8 @@ export default {
 		close: 'Закрыть',
 		// Under the example questions when the page was opened from a link with ?q=.
 		findAnswer: 'Найти ответ в Google',
+		// Read out after a link that opens a new tab.
+		newTab: 'открывается в новой вкладке',
 		// The form that makes such links.
 		shareTitle: 'Отправьте эту страницу тому, кто спросил',
 		shareQuestion: 'Вопрос, который вам задали (необязательно)',

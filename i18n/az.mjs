@@ -33,6 +33,8 @@ export default {
 		close: 'Bağla',
 		// Under the example questions when the page was opened from a link with ?q=.
 		findAnswer: 'Cavabı Google-da axtarın',
+		// Read out after a link that opens a new tab.
+		newTab: 'yeni tabda açılır',
 		// The form that makes such links.
 		shareTitle: 'Bu səhifəni sual verənə göndərin',
 		shareQuestion: 'Sizə verilən sual (istəyə bağlı)',

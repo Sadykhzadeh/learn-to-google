@@ -336,6 +336,19 @@ header nav,
 	min-height: 1.4em;
 }
 
+/* Text for screen readers only, such as the note on a link that opens a new tab. */
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	border: 0;
+}
+
 /*
  * High-contrast modes (Windows contrast themes) drop every background, which
  * would leave the bubbles, the buttons and the language offer as loose text
