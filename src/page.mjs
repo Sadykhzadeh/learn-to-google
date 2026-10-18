@@ -23,6 +23,11 @@ export function rel(dir, target) {
 	return target === '' || target.endsWith('/') ? (r ? r + '/' : './') : r;
 }
 
+// A link that opens a new tab gets a note saying so, which screen readers
+// read out and the page does not show.
+const newTabNotes = (html, t) => html.replace(/(<a [^>]*target="_blank"[^>]*>[\s\S]*?)<\/a>/g,
+	(_, link) => `${link}<span class="visually-hidden"> (${esc(t.ui.newTab)})</span></a>`);
+
 const indent = (html, depth) =>
 	html.trim().split('\n').map((line) => (line ? '\t'.repeat(depth) + line : line)).join('\n');
 
@@ -181,11 +186,11 @@ ${t.questions.map((q) => `\t\t\t<div class="dialog-line -you">
 				<div class="content">${esc(q)}</div>
 			</div>`).join('\n')}
 			<p>${t.verdict}</p>
-			<p class="google-it" id="google-it" hidden><a target="_blank" rel="noopener noreferrer" href="https://www.google.com/">${esc(t.ui.findAnswer)}</a></p>
+			<p class="google-it" id="google-it" hidden><a target="_blank" rel="noopener noreferrer" href="https://www.google.com/">${esc(t.ui.findAnswer)}<span class="visually-hidden"> (${esc(t.ui.newTab)})</span></a></p>
 			<script>
 ${script(askedScript, 4)}
 			</script>
-${indent(t.body, 3)}
+${indent(newTabNotes(t.body, t), 3)}
 			<p>${esc(t.pictureIntro)}</p>
 			<a href="${at(t.image)}" title="${esc(t.imageTitle)}">
 				<picture>

@@ -34,6 +34,8 @@ export default {
 		close: 'Yopish',
 		// Under the example questions when the page was opened from a link with ?q=.
 		findAnswer: 'Javobni Googledan qidiring',
+		// Read out after a link that opens a new tab.
+		newTab: 'yangi yorliqda ochiladi',
 		// The form that makes such links.
 		shareTitle: 'Bu sahifani savol bergan odamga yuboring',
 		shareQuestion: 'Sizga berilgan savol (ixtiyoriy)',

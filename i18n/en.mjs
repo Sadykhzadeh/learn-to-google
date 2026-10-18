@@ -33,6 +33,8 @@ export default {
 		close: 'Close',
 		// Under the example questions when the page was opened from a link with ?q=.
 		findAnswer: 'Find the answer on Google',
+		// Read out after a link that opens a new tab.
+		newTab: 'opens in a new tab',
 		// The form that makes such links.
 		shareTitle: 'Send this page to whoever asked',
 		shareQuestion: 'The question you were asked (optional)',
