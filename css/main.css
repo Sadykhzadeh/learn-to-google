@@ -8,6 +8,7 @@
 	--ink: #333;
 	--muted: #555;
 	--line: #8a8a8a;
+	--placeholder: #757575;
 	--bubble: #bfe9f9;
 	--picture: none;
 	--footer-bg: #334;
@@ -21,6 +22,7 @@
 	--ink: #e2e2e2;
 	--muted: #a6a6a6;
 	--line: #6e6e72;
+	--placeholder: #a6a6a6;
 	--bubble: #1e4250;
 	--picture: brightness(0.9);
 	}
@@ -31,6 +33,7 @@
 	--ink: #e2e2e2;
 	--muted: #a6a6a6;
 	--line: #6e6e72;
+	--placeholder: #a6a6a6;
 	--bubble: #1e4250;
 	--picture: brightness(0.9);
 }
@@ -298,6 +301,9 @@ header nav,
 }
 .share select {
 	width: auto;
+}
+.share input::placeholder {
+	color: var(--placeholder);
 }
 .share .copy {
 	display: flex;
