@@ -22,6 +22,15 @@ const keys = (strings, prefix = '') =>
 		value && typeof value === 'object' && !Array.isArray(value) ? keys(value, `${prefix}${key}.`) : [`${prefix}${key}`]);
 const get = (strings, path) => path.split('.').reduce((value, key) => value?.[key], strings);
 const reference = keys(languages[0]);
+// A list, such as the example questions, must have as many entries as the
+// first translation's, and none of them blank.
+const listProblems = (name, list, referenceList) => [
+	...(list.length === 0 ? [`${name} is empty`] : []),
+	...(referenceList && list.length !== referenceList.length
+		? [`${name} has ${list.length} of the ${referenceList.length} in i18n/${languages[0].lang}.mjs`]
+		: []),
+	...(list.some((item) => typeof item !== 'string' || item.trim() === '') ? [`${name} has an empty entry`] : []),
+];
 let incomplete = 0;
 for (const t of languages) {
 	const own = keys(t);
@@ -29,6 +38,7 @@ for (const t of languages) {
 		...reference.filter((k) => !own.includes(k)).map((k) => `missing ${k}`),
 		...own.filter((k) => !reference.includes(k)).map((k) => `${k} is not in i18n/${languages[0].lang}.mjs`),
 		...own.filter((k) => get(t, k) === '' && k !== 'dir').map((k) => `${k} is empty`),
+		...own.filter((k) => Array.isArray(get(t, k))).flatMap((k) => listProblems(k, get(t, k), get(languages[0], k))),
 	];
 	for (const problem of problems) console.error(`i18n/${t.lang}.mjs: ${problem}`);
 	incomplete += problems.length;
