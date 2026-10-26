@@ -4,14 +4,14 @@ export default {
 	name: "O'zbekcha",
 	title: "Iltimos Googleda qidirishni o'rganing!",
 	description: 'Maqola Googleda qidirish nima va bu nima uchun zarurligi haqida!',
-	intro: 'Chat/forumlarda ushbu turdagi savvolarni bermang:',
+	intro: 'Chat/forumlarda ushbu turdagi savollarni bermang:',
 	questions: ['Nega meros qoldirish kerak?', "Nima uchun osmon ko'k?", 'Polimorfizm nima?'],
 	// The crossed-out word is hidden from screen readers, which would read it as if it still stood.
 	verdict: 'Bu turdagi savollarni avvalo googledan qidirishingiz <s aria-hidden="true">(mumkin)</s> <b>kerak!</b>',
 	body: `
 <p><b>Qanday</b> qidirish kerak:</p>
 <ol>
-	<li><a target="_blank" rel="noopener noreferrer" href="https://google.com">Google</a> ni (yoki boshqa qidirish tizimini oching)</li>
+	<li><a target="_blank" rel="noopener noreferrer" href="https://google.com">Google</a> ni (yoki boshqa qidiruv tizimini) oching</li>
 	<li>Savolingizni yozing.</li>
 </ol>
 <p class="quote"> - Tushundim, lekin chat/forumlarda bunday savollarni berishning qanday yomon tomoni bor?</p>
