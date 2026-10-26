@@ -3,7 +3,7 @@ export default {
 	dir: 'lan/en/',
 	name: 'English',
 	title: 'Please, learn to google!',
-	description: "An article about what does 'to google' mean and why it's important.",
+	description: "An article about what 'to google' means and why it's important.",
 	intro: "Don't ask questions in chats/forums like:",
 	questions: ['Why do we need inheritance?', 'Why is the sky blue?', 'What is polymorphism?'],
 	// The crossed-out word is hidden from screen readers, which would read it as if it still stood.
@@ -11,20 +11,20 @@ export default {
 	body: `
 <p><b>To google</b> means:</p>
 <ol>
-	<li>Open <a target="_blank" rel="noopener noreferrer" href="https://google.com">Google</a> (or other search engine)</li>
+	<li>Open <a target="_blank" rel="noopener noreferrer" href="https://google.com">Google</a> (or another search engine)</li>
 	<li>Enter your request.</li>
 </ol>
-<p class="quote"> - I saw, but what's wrong with that I ask these questions in chats/forums?</p>
-<p> - Believe me, 99% of your questions someone asked in forum a long time ago. This means that the answer is in the Internet. Therefore, asking a question to Google (or other search engine), you not only will get quick response, but also will not be disturbing other people.</p>
-<p class="quote">- So, is asking questions in the chat/forums prohibited/unethical/bad?</p>
-<p>Not really. If you have a question, first Google it, then if you can't find the answer, you can <s>search it in <a target="_blank" rel="noopener noreferrer" href="https://yandex.com">Yandex</a></s> ask your question in forum.</p>
+<p class="quote"> - I see, but what's wrong with asking these questions in chats/forums?</p>
+<p> - Believe me, someone asked 99% of your questions in a forum a long time ago. This means that the answer is on the Internet. Therefore, by asking Google (or another search engine), you will not only get a quick response, but also avoid disturbing other people.</p>
+<p class="quote">- So, is asking questions in chats/forums prohibited/unethical/bad?</p>
+<p>Not really. If you have a question, first Google it, then if you can't find the answer, you can <s>search it in <a target="_blank" rel="noopener noreferrer" href="https://yandex.com">Yandex</a></s> ask your question in a forum.</p>
 `,
 	pictureIntro: 'The essence in one picture:',
 	image: 'lan/en/img/bad-good.png',
 	imageAlt: 'Bad: asking “What is polymorphism?” in a chat. Good: typing the same question into Google, and the answer is right there on the results page.',
 	imageTitle: "The son came to his father and asked: 'Why should I Google?'",
 	footer: 'Inspiration - stupid questions from different chats that need to be googled... Link to',
-	github: 'Github',
+	github: 'GitHub',
 	ui: {
 		languages: 'Language',
 		darkTheme: 'Dark theme',
